@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "registryName":{
+            "defaultValue":"sentiaContainerRegistry1",
+            "type":"string"
+        }
+    },
+    "functions": [],
+    "variables": {
+        "registryName": "[parameters('registryName')]",
+        "registryApiVersion": "2019-05-01"
+    },
+    "resources": [
+        {
+           "name": "[variables('registryName')]",
+           "type": "Microsoft.ContainerRegistry/registries",
+           "apiVersion": "[variables('registryApiVersion')]",
+           "location": "[resourceGroup().location]",
+           "sku": {
+               "name": "Basic"
+           },
+           "properties": {
+               "adminUserEnabled": true
+           }
+       }
+    ],
+    "outputs": {
+        "registry_name": {
+            "value": "[variables('registryName')]",
+            "type": "string"
+        }
+    }
+}
