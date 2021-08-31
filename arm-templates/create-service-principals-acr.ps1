@@ -1,5 +1,3 @@
-#PS: before run it, you must give API permissions to azure ADO user on azure cloud
-
 [CmdletBinding()]
 param (
     [Parameter(Mandatory)]
