@@ -1,0 +1,37 @@
+#DEPLOYMENT - NODE API
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-api
+  labels:
+    app: node-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-api
+  template:
+    metadata:
+      labels:
+        app: node-api
+    spec:
+      containers:
+      - name: node-api
+        image: sentiacontainerregistry1.azurecr.io/brunoteleginski/sentia-test:219
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3001
+
+---
+#SERVICE- NODE API
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-api
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3001
+      targetPort: 3001
+  selector:
+    app: node-api
