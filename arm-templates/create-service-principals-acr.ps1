@@ -8,7 +8,7 @@ param (
 )
 
 $ACR_NAME= $containerRegistryName
-$SERVICE_PRINCIPAL_NAME='acr-sp1'
+$SERVICE_PRINCIPAL_NAME='sentia-acr-sp1'
 $ROLE = 'acrpull'
 
 #get ACR ID
