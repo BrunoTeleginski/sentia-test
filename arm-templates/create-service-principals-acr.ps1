@@ -15,8 +15,8 @@ $ROLE = 'acrpull'
 $ACR_REGISTRY_ID=az acr show --name $ACR_NAME --query id --output tsv
 
 #create service principal with the pull role assigned
-$SP_PASSWD= az ad sp create-for-rbac --name http://$SERVICE_PRINCIPAL_NAME --scopes $ACR_REGISTRY_ID --role $ROLE --query password --output tsv
-$SP_APP_ID=az ad sp show --id http://$SERVICE_PRINCIPAL_NAME --query appId --output tsv
+$SP_PASSWD= az ad sp create-for-rbac --name $SERVICE_PRINCIPAL_NAME --scopes $ACR_REGISTRY_ID --role $ROLE --query password --output tsv
+$SP_APP_ID=az ad sp show --id $SERVICE_PRINCIPAL_NAME --query appId --output tsv
 
 echo "Server" $ACR_NAME
 echo "usernname: $SP_APP_ID"
