@@ -12,11 +12,12 @@
     },
     "functions": [],
     "variables": {
-        "storageAccountApiVersion": "2021-04-01"
+        "storageAccountApiVersion": "2021-04-01",
+        "storageAccountNameLowerCase": "[toLower(trim(parameters('storageAccountName')))]"
     },
     "resources": [
         {
-            "name": "[parameters('storageAccountName')]",
+            "name": "[variables('storageAccountNameLowerCase')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "[variables('storageAccountApiVersion')]",
             "tags": {
@@ -58,9 +59,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/fileServices",
             "apiVersion": "[variables('storageAccountApiVersion')]",
-            "name": "[concat(parameters('storageAccountName'), '/default')]",
+            "name": "[concat(variables('storageAccountNameLowerCase'), '/default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameLowerCase'))]"
             ],
             "sku": {
                 "name": "Standard_RAGRS",
@@ -76,10 +77,10 @@
         {
             "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
             "apiVersion": "[variables('storageAccountApiVersion')]",
-            "name": "[concat(parameters('storageAccountName'), '/default/', parameters('fileShareName'))]",
+            "name": "[concat(variables('storageAccountNameLowerCase'), '/default/', parameters('fileShareName'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('storageAccountName'), 'default')]",
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts/fileServices', variables('storageAccountNameLowerCase'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameLowerCase'))]"
             ],
             "properties": {
                 "accessTier": "TransactionOptimized",
@@ -89,9 +90,9 @@
         }
     ],
     "outputs": {
-        // "storageAccountConnectionString": {  
-        //     "type": "string",  
-        //     "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', listKeys(resourceId(resourceGroup().name,'Microsoft.Storage/storageAccounts', parameters('storageAccountName')), variables('storageAccountApiVersion')).keys[0].value,';EndpointSuffix=core.windows.net')]"  
-        // }
+        "storageAccountConnectionString": {  
+            "type": "string",  
+            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountNameLowerCase'), ';AccountKey=', listKeys(resourceId(resourceGroup().name,'Microsoft.Storage/storageAccounts', variables('storageAccountNameLowerCase')), variables('storageAccountApiVersion')).keys[0].value,';EndpointSuffix=core.windows.net')]"  
+        }
     }
 }
