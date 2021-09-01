@@ -1,0 +1,19 @@
+#INGRESS
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: node-api
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: note-api.9e0bc47e08e147a18d47.eastus.aksapp.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: node-api
+            port: 
+              number: 3001
