@@ -8,27 +8,12 @@
         },
         "fileShareName":{
             "type":"string"
-        },
-         "sasTokenExpiry": {  
-            "type": "string",  
-            "defaultValue":  "2022-05-24T11:42:03.1567373Z"  
-        }, 
-        "accountSasProperties": {  
-            "type": "object",  
-            "defaultValue": {  
-                "signedServices": "b",  
-                "signedPermission": "rl",  
-                "signedResourceTypes": "sco",  
-                "keyToSign": "key2",
-                "signedExpiry": "[parameters('sasTokenExpiry')]"
-            }  
         }
     },
     "functions": [],
     "variables": {
         "storageAccountApiVersion": "2021-04-01",  
-        "storageAccountNameLoweCase": "[toLower(trim(parameters('storageAccountName')))]",   
-        "blobEndPoint":"[concat('https://',variables('storageAccountNameLoweCase'),'.blob.core.windows.net/')]"  
+        "storageAccountNameLoweCase": "[toLower(trim(parameters('storageAccountName')))]"
     },
     "resources": [
         {
@@ -139,11 +124,7 @@
     "outputs": {
         "storageAccountConnectionString": {  
             "type": "string",  
-            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountNameLoweCase'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameLoweCase')), variables('storageAccountApiVersion')).keys[0].value)]"  
-        },  
-        "storageAccountConnectionStringWithSAS": {  
-            "type": "string",  
-            "value": "[concat('BlobEndpoint=',variables('blobEndPoint'),';SharedAccessSignature=', listAccountSas(variables('storageAccountNameLoweCase'), variables('storageAccountApiVersion'), parameters('accountSasProperties')).accountSasToken)]"  
-        }  
+            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountNameLoweCase'), ';AccountKey=', listKeys(resourceId(resourceGroup().name,'Microsoft.Storage/storageAccounts', parameters('storageAccountName')), variables('storageAccountApiVersion')).keys[0].value,';EndpointSuffix=core.windows.net')]"  
+        }
     }
 }
