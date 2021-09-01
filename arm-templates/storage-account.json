@@ -9,13 +9,18 @@
         "fileShareName":{
             "type":"string"
         },
+         "sasTokenExpiry": {  
+            "type": "string",  
+            "defaultValue":  "2022-12-31T23:59:00Z"  
+        }, 
         "accountSasProperties": {  
             "type": "object",  
             "defaultValue": {  
                 "signedServices": "b",  
                 "signedPermission": "rl",  
                 "signedResourceTypes": "sco",  
-                "keyToSign": "key2"
+                "keyToSign": "key2",
+                "signedExpiry": "[parameters('sasTokenExpiry')]" 
             }  
         }
     },
