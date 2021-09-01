@@ -57,8 +57,40 @@
             }
         },
         {
+            "type": "Microsoft.Storage/storageAccounts/blobServices",
+            "apiVersion": "[variables('storageAccountApiVersion')]",
+            "name": "[concat(variables('storageAccountNameLoweCase'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameLoweCase'))]"
+            ],
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "changeFeed": {
+                    "enabled": false
+                },
+                "restorePolicy": {
+                    "enabled": false
+                },
+                "containerDeleteRetentionPolicy": {
+                    "enabled": true,
+                    "days": 7
+                },
+                "cors": {
+                    "corsRules": []
+                },
+                "deleteRetentionPolicy": {
+                    "enabled": true,
+                    "days": 7
+                },
+                "isVersioningEnabled": false
+            }
+        },
+        {
             "type": "Microsoft.Storage/storageAccounts/fileServices",
-            "apiVersion": "2021-04-01",
+            "apiVersion": "[variables('storageAccountApiVersion')]",
             "name": "[concat(variables('storageAccountNameLoweCase'), '/default')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameLoweCase'))]"
@@ -82,7 +114,7 @@
         },
         {
             "type": "Microsoft.Storage/storageAccounts/queueServices",
-            "apiVersion": "2021-04-01",
+            "apiVersion": "[variables('storageAccountApiVersion')]",
             "name": "[concat(variables('storageAccountNameLoweCase'), '/default')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameLoweCase'))]"
@@ -95,7 +127,7 @@
         },
         {
             "type": "Microsoft.Storage/storageAccounts/tableServices",
-            "apiVersion": "2021-04-01",
+            "apiVersion": "[variables('storageAccountApiVersion')]",
             "name": "[concat(variables('storageAccountNameLoweCase'), '/default')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameLoweCase'))]"
