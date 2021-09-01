@@ -30,7 +30,7 @@ spec:
     - ReadWriteMany
   azureFile:
     secretName: azure-secret
-    shareName: mongo-file-share
+    shareName: #{fileShareName}#
     readOnly: false
   mountOptions:
   - dir_mode=0777

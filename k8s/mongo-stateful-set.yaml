@@ -55,5 +55,3 @@ spec:
           name: mongo-db-persistent-storage
           persistentVolumeClaim:
             claimName: azurefile
-          secret:
-            secretName: azure-secret
