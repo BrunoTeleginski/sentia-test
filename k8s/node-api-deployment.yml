@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: node-api
-        image: #{acr-name-lowercase}#.azurecr.io/#{container-registry-name-lowercase}#:latest
+        image: #{acr-name-lowercase}#.azurecr.io/#{Build.Repository.Name}#:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 3001
