@@ -32,7 +32,7 @@ spec:
     - ReadWriteMany
   azureFile:
     secretName: staging-azure-secret
-    shareName: #{file-share-name}#
+    shareName: #{fileShareName}#
     readOnly: false
   mountOptions:
   - dir_mode=0777
