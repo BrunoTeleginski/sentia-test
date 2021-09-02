@@ -1,0 +1,41 @@
+#DEPLOYMENT - NODE API
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: staging
+  name: staging-node
+  labels:
+    app: staging-node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: staging-node
+  template:
+    metadata:
+      labels:
+        app: staging-node
+    spec:
+      containers:
+      - name: staging-node
+        image: #{acr-name-lowercase}#.azurecr.io/#{repository_name}#-staging:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3001
+
+---
+#SERVICE- NODE API
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: staging-node
+  namespace: staging
+  name: staging-node-api
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3001
+      targetPort: 3001
+  selector:
+    app: staging-node

@@ -27,7 +27,18 @@ spec:
             name: dev-node-api-external
             port:
               number: 3001
+  - host: staging-node-api.16781f0b56724d758b7a.eastus.aksapp.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: staging-node-api-external
+            port:
+              number: 3001
 ---
+#DEV
 kind: Service
 apiVersion: v1
 metadata:
@@ -36,5 +47,17 @@ metadata:
 spec:
   type: ExternalName
   externalName: dev-node-api.dev.svc.cluster.local
+  ports:
+  - port: 3001
+---
+#STAGING
+kind: Service
+apiVersion: v1
+metadata:
+  name: staging-node-api-external
+  namespace: default
+spec:
+  type: ExternalName
+  externalName: staging-node-api.staging.svc.cluster.local
   ports:
   - port: 3001
