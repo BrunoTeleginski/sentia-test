@@ -1,0 +1,39 @@
+#DEPLOYMENT - NODE API
+apiVersion: apps/v1
+kind: Deployment
+namespace: dev
+metadata:
+  name: dev-node-api
+  labels:
+    app: dev-node-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-node-api
+  template:
+    metadata:
+      labels:
+        app: dev-node-api
+    spec:
+      containers:
+      - name: dev-node-api
+        image: #{acr-name-lowercase}#.azurecr.io/#{repository_name}#:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3001
+
+---
+#SERVICE- NODE API
+apiVersion: v1
+kind: Service
+namespace: dev
+metadata:
+  name: dev-node-api
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3001
+      targetPort: 3001
+  selector:
+    app: dev-node-api
