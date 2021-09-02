@@ -20,10 +20,8 @@ $armOutputObj.PSObject.Properties | ForEach-Object {
     $type = ($_.value.type).ToLower()
     $keyname = $_.Name
 
-    if ($KeyPrefix) {
-        $keyname = $keyname -join $keyname
-    }
-
+    $keyname = @("$keyname$KeyPrefix")
+    
     $vsoAttribs = @("task.setvariable variable=$keyName")
 
     if ($type -eq "array") {
@@ -43,7 +41,8 @@ $armOutputObj.PSObject.Properties | ForEach-Object {
     }
 
     $var = "##vso[$attribString]$value"
- 
+    
+    ECHO $KeyPrefix
     ECHO $keyname
     ECHO $value
    
