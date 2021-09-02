@@ -30,7 +30,7 @@ spec:
     - ReadWriteMany
   azureFile:
     secretName: dev-azure-secret
-    shareName: #{fileShareName}#
+    shareName: #{file-share-name-dev}#
     readOnly: false
   mountOptions:
   - dir_mode=0777
