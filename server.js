@@ -8,11 +8,15 @@ const port = 3001;
 //DATABASE
 var mongoose = require('mongoose');  
 
-async function mongoConnectionTest() {
+async function mongoConnectionTest(env = null) {
     // Use connect method to connect to the server
     try{
         
-        await mongoose.connect('mongodb://mongo-db');
+        if(env == 'dev'){
+            await mongoose.connect('mongodb://dev-mongo-db');
+        }else{
+            await mongoose.connect('mongodb://mongo-db');
+        }
 
         return 'done.';
     }catch(e){
@@ -25,6 +29,15 @@ app.get('/mongo-test', async function(req, res){
     res.json({
         status:"success",
         data: await mongoConnectionTest(),
+    });
+
+});
+
+app.get('/mongo-test-dev', async function(req, res){
+    
+    res.json({
+        status:"success",
+        data: await mongoConnectionTest('dev'),
     });
 
 });
