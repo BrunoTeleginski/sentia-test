@@ -1,0 +1,59 @@
+#SERVICE- MONGO
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: staging
+  name: staging-mongo-db
+  labels:
+    app: staging-mongo-db
+spec:
+  type: ClusterIP
+  ports:
+    - port: 27017
+      targetPort: 27017
+  selector:
+    app: staging-mongo-db
+---
+#StatefulSet
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: staging
+  name: mongo
+spec:
+  serviceName: "staging-mongo-db"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: staging-mongo-db    
+  template:
+    metadata:
+      labels:
+        app: staging-mongo-db
+    spec:
+      containers:
+        - name: dev-mongo-db
+          command:
+            - "mongod"
+            - "--bind_ip"
+            - "0.0.0.0"
+            - "--port"
+            - "27017"
+            - "--dbpath"
+            - "/data/mongoaz"
+          image: "mongo:latest"
+          ports:
+            - containerPort: 27017
+              name: mongo
+          volumeMounts:
+            -
+              mountPath: /data/mongoaz
+              name: staging-mongo-db-persistent-storage
+      restartPolicy: Always
+      securityContext:
+        fsGroup: 1234
+      volumes:
+        -
+          name: staging-mongo-db-persistent-storage
+          persistentVolumeClaim:
+            claimName: staging-azurefile
