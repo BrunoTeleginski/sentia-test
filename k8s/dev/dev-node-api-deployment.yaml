@@ -1,8 +1,8 @@
 #DEPLOYMENT - NODE API
 apiVersion: apps/v1
 kind: Deployment
-namespace: dev
 metadata:
+  namespace: dev
   name: dev-node-api
   labels:
     app: dev-node-api
@@ -27,8 +27,8 @@ spec:
 #SERVICE- NODE API
 apiVersion: v1
 kind: Service
-namespace: dev
 metadata:
+  namespace: dev
   name: dev-node-api
 spec:
   type: ClusterIP
