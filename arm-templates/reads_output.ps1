@@ -6,7 +6,11 @@ param (
 
     [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
-    [bool]$lowerCase
+    [bool]$lowerCase,
+
+    [Parameter()]
+    [ValidateNotNullOrEmpty()]
+    [string]$KeyPrefix
 )
 
 Write-Output "Retrieved input: $ArmOutputString"
@@ -15,6 +19,11 @@ $armOutputObj = $ArmOutputString | ConvertFrom-Json
 $armOutputObj.PSObject.Properties | ForEach-Object {
     $type = ($_.value.type).ToLower()
     $keyname = $_.Name
+
+    if ($KeyPrefix) {
+        $keyname = $keyname -join $keyname
+    }
+
     $vsoAttribs = @("task.setvariable variable=$keyName")
 
     if ($type -eq "array") {
