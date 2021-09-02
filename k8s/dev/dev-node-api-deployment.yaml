@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: dev-node
-        image: sentiacontainerregistry1.azurecr.io/brunoteleginski/sentia-test:latest
+        image: #{acr-name-lowercase}#.azurecr.io/#{repository_name}#-dev:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 3001
