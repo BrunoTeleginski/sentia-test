@@ -3,22 +3,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: dev
-  name: dev-node-api
+  name: dev-node
   labels:
-    app: dev-node-api
+    app: dev-node
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dev-node-api
+      app: dev-node
   template:
     metadata:
       labels:
-        app: dev-node-api
+        app: dev-node
     spec:
       containers:
-      - name: dev-node-api
-        image: #{acr-name-lowercase}#.azurecr.io/#{repository_name}#:latest
+      - name: dev-node
+        image: sentiacontainerregistry1.azurecr.io/brunoteleginski/sentia-test:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 3001
@@ -28,6 +28,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    app: dev-node
   namespace: dev
   name: dev-node-api
 spec:
@@ -36,4 +38,4 @@ spec:
     - port: 3001
       targetPort: 3001
   selector:
-    app: dev-node-api
+    app: dev-node
