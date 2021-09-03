@@ -28,7 +28,7 @@ spec:
         - name: azure-document-file-share
           azureFile:
             shareName: #{file-share-name-doc}#
-            secretName: azure-secret-document
+            secretName: azure-secret
             readOnly: false
 
 ---
