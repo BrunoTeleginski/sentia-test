@@ -14,6 +14,8 @@ async function mongoConnectionTest(env = null) {
         
         if(env == 'dev'){
             await mongoose.connect('mongodb://dev-mongo-db');
+        }else if(env == 'staging'){
+            await mongoose.connect('mongodb://staging-mongo-db');
         }else{
             await mongoose.connect('mongodb://mongo-db');
         }
@@ -25,23 +27,27 @@ async function mongoConnectionTest(env = null) {
 }
 
 app.get('/mongo-test', async function(req, res){
-    
-    
     res.json({
         status:"success",
         data: await mongoConnectionTest(),
     });
-
 });
 
 app.get('/mongo-test-dev', async function(req, res){
-    
     res.json({
         status:"success",
         data: await mongoConnectionTest('dev'),
     });
-
 });
+
+app.get('/mongo-test-staging', async function(req, res){
+    res.json({
+        status:"success",
+        data: await mongoConnectionTest('staging'),
+    });
+});
+
+
 
 app.get('/test', async function(req, res){
     

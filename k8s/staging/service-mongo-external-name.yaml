@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: staging-mongo-db
+  namespace: staging
+spec:
+  type: ExternalName
+  externalName: mongo-db.default.svc.cluster.local
+  ports:
+  - port: 27017
