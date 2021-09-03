@@ -4,7 +4,7 @@ metadata:
   namespace: dev
   name: dev-python-script-python
 spec:
-  schedule: "* */1 * * *"
+  schedule: "* 12 * * *"
   jobTemplate:
     spec:
       template:
