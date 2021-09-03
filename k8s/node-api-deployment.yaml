@@ -21,6 +21,15 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3001
+        volumeMounts:
+          - name: azure-document-file-share
+            mountPath: /mnt/azure-document
+      volumes:
+        - name: azure-document-file-share
+          azureFile:
+            shareName: #{file-share-name-doc}#
+            secretName: azure-secret-document
+            readOnly: false
 
 ---
 #SERVICE- NODE API
