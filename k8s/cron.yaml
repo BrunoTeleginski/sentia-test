@@ -1,0 +1,15 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: python-script-python
+spec:
+  schedule: "* */1 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: python-script-python
+            image: #{acr-name-lowercase}#.azurecr.io/#{repository_name}#-python:latest
+            imagePullPolicy: IfNotPresent
+          restartPolicy: OnFailure

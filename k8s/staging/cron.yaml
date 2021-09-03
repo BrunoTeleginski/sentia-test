@@ -1,0 +1,16 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  namespace: staging
+  name: staging-python-script-python
+spec:
+  schedule: "* */1 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: staging-python-script-python
+            image: #{acr-name-lowercase}#.azurecr.io/#{repository_name}#-python-staging:latest
+            imagePullPolicy: IfNotPresent
+          restartPolicy: OnFailure
