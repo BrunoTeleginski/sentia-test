@@ -22,6 +22,15 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3001
+        volumeMounts:
+          - name: azure-staging-document-file-share
+            mountPath: /mnt/azure-document
+      volumes:
+        - name: azure-staging-document-file-share
+          azureFile:
+            shareName: #{file-share-name-doc}#
+            secretName: staging-azure-secret
+            readOnly: false
 
 ---
 #SERVICE- NODE API
