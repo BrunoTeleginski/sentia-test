@@ -58,3 +58,8 @@ Resources created:
 
 # Time log
 ![alt text](https://github.com/BrunoTeleginski/sentia-test/blob/master/images/timelog.png?raw=true)
+
+# Application Links for different environments, with the mongo test connection 
+- http://node-api.16781f0b56724d758b7a.eastus.aksapp.io/mongo-test
+- http://dev-node-api.16781f0b56724d758b7a.eastus.aksapp.io/mongo-test-dev
+- http://staging-node-api.16781f0b56724d758b7a.eastus.aksapp.io/mongo-test-staging
