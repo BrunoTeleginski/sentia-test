@@ -55,3 +55,6 @@ Resources created:
  - Node application has a volume mounted to storage the document, using storage account file share. That way it's no longer neccessary to use FTP to send the document since we have SAS token of storage account to send it throught application
  - Crons are executed by CronJob from kubernetes service
  - The three environements mentioned by customer were separated on kubernetes as namespaces, but in the same cluster to reduce the cost. The branches manage were also created as three environements
+
+# Time log
+![alt text](https://github.com/BrunoTeleginski/sentia-test/blob/master/images/timelog.png?raw=true)
