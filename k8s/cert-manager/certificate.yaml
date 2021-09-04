@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   dnsNames:
-    - 16781f0b56724d758b7a.eastus.aksapp.io
+    - node-api.16781f0b56724d758b7a.eastus.aksapp.io
   secretName: certification-tls
   issuerRef:
     name: cluster-issuer
