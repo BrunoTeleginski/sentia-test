@@ -10,4 +10,6 @@ spec:
     privateKeySecretRef:
       name: cluster-issuer-key
     solvers:
-    - http01: {}
+    - http01:
+       ingress:
+         class: nginx
