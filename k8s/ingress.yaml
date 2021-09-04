@@ -13,7 +13,7 @@ spec:
   tls:
   - hosts:
     - node-api.16781f0b56724d758b7a.eastus.aksapp.io
-    secretName: cluster-issuer-key
+    secretName: certification-tls
   rules:
   - host: node-api.16781f0b56724d758b7a.eastus.aksapp.io
     http:
