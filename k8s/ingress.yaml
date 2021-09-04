@@ -4,8 +4,17 @@ kind: Ingress
 metadata:
   name: node-api
   annotations:
-    kubernetes.io/ingress.class: addon-http-application-routing
+    annotations:
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/tls-acme: 'true'
+    nginx.ingress.kubernetes.io/tls-acme: 'true'
 spec:
+  tls:
+  - hosts:
+    - node-api.16781f0b56724d758b7a.eastus.aksapp.io
+    secretName: cluster-issuer-key
   rules:
   - host: node-api.16781f0b56724d758b7a.eastus.aksapp.io
     http:
