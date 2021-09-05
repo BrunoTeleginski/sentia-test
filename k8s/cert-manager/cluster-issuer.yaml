@@ -6,7 +6,7 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: exampleemail@email.com
+    email: azuredns-hostmaster.microsoft.com@node-api.16781f0b56724d758b7a.eastus.aksapp.io
     privateKeySecretRef:
       name: cluster-issuer-key
     solvers:
