@@ -7,10 +7,10 @@ metadata:
     kubernetes.io/ingress.class: addon-http-application-routing
     certmanager.k8s.io/cluster-issuer: cluster-issuer
 spec:
-  tls:
-  - hosts:
-    - node-api.16781f0b56724d758b7a.eastus.aksapp.io
-    secretName: ccertification-app-tls
+  # tls:
+  # - hosts:
+  #   - node-api.16781f0b56724d758b7a.eastus.aksapp.io
+  #   secretName: ccertification-app-tls
   rules:
   - host: node-api.16781f0b56724d758b7a.eastus.aksapp.io
     http:
