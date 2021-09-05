@@ -6,7 +6,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: addon-http-application-routing
     certmanager.k8s.io/cluster-issuer: cluster-issuer
-    acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
   tls:
   - hosts:
