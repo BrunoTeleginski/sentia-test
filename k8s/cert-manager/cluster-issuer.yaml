@@ -11,6 +11,8 @@ spec:
       name: cluster-issuer-key
     solvers:
     - http01:
-       ingress:
-         class: nginx
-         
+        ingress:
+          ingressTemplate:
+            metadata:
+              annotations:
+                kubernetes.io/ingress.class: addon-http-application-routing

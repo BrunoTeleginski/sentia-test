@@ -4,8 +4,7 @@ kind: Ingress
 metadata:
   name: node-api
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    #kubernetes.io/ingress.class: addon-http-application-routing
+    kubernetes.io/ingress.class: addon-http-application-routing
     certmanager.k8s.io/cluster-issuer: cluster-issuer
 spec:
   tls:
