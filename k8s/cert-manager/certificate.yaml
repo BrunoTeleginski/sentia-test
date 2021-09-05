@@ -8,5 +8,5 @@ spec:
     - node-api.16781f0b56724d758b7a.eastus.aksapp.io
   secretName: certification-app-tls
   issuerRef:
-    name: cert-issuer
-    kind: Issuer
+    name: cluster-issuer
+    kind: ClusterIssuer
