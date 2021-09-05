@@ -6,9 +6,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: addon-http-application-routing
     certmanager.k8s.io/cluster-issuer: cluster-issuer
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
-    cert-manager.io/issue-temporary-certificate: "true" # temporary cert required for nginx to be able to reload
-    acme.cert-manager.io/http01-edit-in-place: "true" # important to merge with existing ingress resource into a single nginx config file
 spec:
   tls:
   - hosts:
