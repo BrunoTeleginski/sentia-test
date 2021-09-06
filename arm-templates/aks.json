@@ -40,7 +40,9 @@
                         "availabilityZones": [
                             "1"
                         ],
-                        "enableAutoScaling": false,
+                        "enableAutoScaling": true,
+                        "maxCount": 3,
+                        "minCount": 1,
                         "orchestratorVersion": "1.20.7",
                         "nodeLabels": {},
                         "mode": "System",
@@ -94,7 +96,9 @@
                 "availabilityZones": [
                     "1"
                 ],
-                "enableAutoScaling": false,
+                "enableAutoScaling": true,
+                "maxCount": 3,
+                "minCount": 1,
                 "orchestratorVersion": "1.20.7",
                 "nodeLabels": {},
                 "mode": "System",
