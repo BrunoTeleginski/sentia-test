@@ -4,6 +4,7 @@ metadata:
   name: do-block-storage
 provisioner: kubernetes.io/azure-file
 parameters:
+  skuName: Standard_LRS
   location: eastus
   storageAccount: sentiastorageaccount1
   secretName: azure-secret
