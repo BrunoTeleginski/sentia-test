@@ -79,7 +79,7 @@ spec:
         name: data
         labels:
           app: elasticsearch
-      spec:
+      spec: 
         accessModes:
           - ReadWriteMany
         storageClassName: do-block-storage

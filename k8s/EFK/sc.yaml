@@ -3,7 +3,11 @@ kind: StorageClass
 metadata:
   name: do-block-storage
 provisioner: kubernetes.io/azure-file
+mountOptions:
+  - dir_mode=0755
+  - file_mode=0755
 parameters:
   skuName: Standard_LRS
   location: eastus
   storageAccount: sentiastorageaccount1
+  resourceGroup: sentia-test
