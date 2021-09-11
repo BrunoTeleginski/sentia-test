@@ -81,7 +81,7 @@ spec:
           app: elasticsearch
       spec:
         accessModes:
-          - ReadWriteOnce
+          - ReadWriteMany
         storageClassName: do-block-storage
         resources:
           requests:

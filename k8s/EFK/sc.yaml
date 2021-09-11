@@ -1,0 +1,9 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: do-block-storage
+provisioner: kubernetes.io/azure-file
+parameters:
+  location: eastus
+  storageAccount: sentiastorageaccount1
+  secretName: azure-secret
