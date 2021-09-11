@@ -10,4 +10,4 @@ spec:
     requests:
       storage: 5Gi
   storageClassName: do-block-storage
-  volumeName: elasticsearch-pvc
+  volumeName: elasticsearch-pv
