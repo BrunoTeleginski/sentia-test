@@ -83,6 +83,10 @@ spec:
         accessModes:
           - ReadWriteMany
         storageClassName: do-block-storage
+        azureFile:
+          secretName: azure-secret
+          shareName: es-logs
+          readOnly: false
         resources:
           requests:
             storage: 100Gi
