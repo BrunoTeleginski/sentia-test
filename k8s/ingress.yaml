@@ -37,6 +37,28 @@ spec:
             name: staging-node-api-external
             port:
               number: 3001
+  - host: kibana.16781f0b56724d758b7a.eastus.aksapp.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kibana-external
+            port:
+              number: 5601            
+---
+#KIBANA
+kind: Service
+apiVersion: v1
+metadata:
+  name: kibana-external
+  namespace: default
+spec:
+  type: ExternalName
+  externalName: kibana.kube-logging.svc.cluster.local
+  ports:
+  - port: 5601
 ---
 #DEV
 kind: Service
