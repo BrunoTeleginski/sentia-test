@@ -32,6 +32,10 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /usr/share/elasticsearch/data
+          volumes:
+          - name: data
+            persistentVolumeClaim:
+              claimName: elasticsearch-pvc
           env:
             - name: cluster.name
               value: k8s-logs
@@ -74,19 +78,16 @@ spec:
             - ulimit -n 65536
           securityContext:
             privileged: true
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-        labels:
-          app: elasticsearch
-      spec: 
-        accessModes:
-          - ReadWriteMany
-        storageClassName: do-block-storage
-        azureFile:
-          secretName: azure-secret
-          shareName: es-logs
-          readOnly: false
-        resources:
-          requests:
-            storage: 100Gi
+  
+  # volumeClaimTemplates:
+  #   - metadata:
+  #       name: data
+  #       labels:
+  #         app: elasticsearch
+  #     spec: 
+  #       accessModes:
+  #         - ReadWriteMany
+  #       storageClassName: do-block-storage
+  #       resources:
+  #         requests:
+  #           storage: 5Gi
