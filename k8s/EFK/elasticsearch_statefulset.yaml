@@ -79,10 +79,10 @@ spec:
         name: data
         labels:
           app: elasticsearch
-        spec: null
+      spec:
         accessModes:
           - ReadWriteOnce
-        storageClassName: elasticsearch-gp2
+        storageClassName: do-block-storage
         resources:
           requests:
             storage: 100Gi
