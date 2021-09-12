@@ -45,7 +45,10 @@ spec:
             - name: cluster.initial_master_nodes
               value: 'es-cluster-0,es-cluster-1,es-cluster-2'
             - name: ES_JAVA_OPTS
-              value: '-Xms512m -Xmx512m'
+              value: -Xms256m -Xmx512m
+            - name: bootstrap.memory_lock
+              value: "true"
+
       volumes:
       - name: data
         persistentVolumeClaim:
