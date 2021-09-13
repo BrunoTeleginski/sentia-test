@@ -7,7 +7,7 @@ spec:
   capacity:
     storage: 5Gi
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   storageClassName: do-block-storage
   azureFile:
     secretName: azure-secret
